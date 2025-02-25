@@ -7,6 +7,7 @@ import {
     materialRenderers,
     materialCells,
 } from '@jsonforms/material-renderers';
+import { renderers } from '../utils/Renderers';
 
 const Home = () => {
     const [data, setData] = useState({});
@@ -28,7 +29,7 @@ const Home = () => {
                     schema={schema}
                     uischema={UISchema}
                     data={data}
-                    renderers={materialRenderers}
+                    renderers={renderers}
                     cells={materialCells}
                     onChange={({ data }) => {
                         console.log(data);

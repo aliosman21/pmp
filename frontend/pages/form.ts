@@ -348,6 +348,22 @@ export const schema = {
             }
         },
         // ----------------------------------------------------------- Lab Test -------------------------------------- //
+        "labTest": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "dateTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "labFile": {
+                        "type": "string",
+                        "format": "data-url"
+                    }
+                }
+            }
+        },
         // ----------------------------------------------------------- Radiology -------------------------------------- //
         "radiology": {
             "type": "array",
@@ -362,10 +378,19 @@ export const schema = {
                             "MRI"
                         ]
                     },
+                    "scanFile": {
+                        "type": "string",
+                        "format": "data-url"
+                    }
                 }
             }
         },
 
+        // ----------------------------------------------------------- Medication -------------------------------------- //
+        "prescriptionFile": {
+            "type": "string",
+            "format": "data-url"
+        }
 
     }
 }
@@ -887,6 +912,32 @@ export const UISchema = {
             "type": "Category",
             "label": "Lab Test",
             "elements": [
+                {
+                    "type": "Control",
+                    "scope": "#/properties/labTest",
+                    "options": {
+                        "detail": {
+                            "type": "VerticalLayout",
+                            "elements": [
+                                {
+                                    "type": "HorizontalLayout",
+                                    "elements": [
+                                        {
+                                            "type": "Control",
+                                            "scope": "#/properties/dateTime"
+                                        },
+                                        {
+                                            "type": "Control",
+                                            "scope": "#/items/properties/labFile",
+                                        }
+
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+
             ]
         },
         {
@@ -907,11 +958,26 @@ export const UISchema = {
                                             "type": "Control",
                                             "scope": "#/properties/scanType"
                                         },
+                                        {
+                                            "type": "Control",
+                                            "scope": "#/items/properties/scanFile",
+                                        }
+
                                     ]
                                 }
                             ]
                         }
                     }
+                }
+            ]
+        },
+        {
+            "type": "Category",
+            "label": "Current Medication",
+            "elements": [
+                {
+                    "type": "Control",
+                    "scope": "#/items/properties/prescriptionFile",
                 }
             ]
         },
