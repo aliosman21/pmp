@@ -1,31 +1,49 @@
-// filepath: /F:/QR/frontend/components/FileUploadRenderer.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { withJsonFormsControlProps } from '@jsonforms/react';
-import { Button, Grid2, Typography } from '@mui/material';
+import { Box, Button, Grid2, Typography } from '@mui/material';
+import { uploadFile } from './api';
 
 const FileUploadRenderer = ({ data, handleChange, path, label }: any) => {
-    const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const [fileName, setFileName] = useState<string | null>(null);
+    const [filePreview, setFilePreview] = useState<string | null>(null);
+
+    const onFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0) {
             const file = event.target.files[0];
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                handleChange(path, e.target?.result);
-            };
-            reader.readAsDataURL(file);
+            setFileName(file.name);
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const url = await uploadFile(formData);
+                setFilePreview(url);
+                handleChange(path, url);
+            } catch (error) {
+                console.error('Error uploading file:', error);
+            }
         }
     };
 
+    console.log('data', data)
+
     return (
-        <Grid2 container direction="column" justifyItems={'center'} alignItems={'center'}>
-            <Button variant="contained" component="label" sx={{ width: '25%' }}>
-                Upload File
-                <input type="file" hidden onChange={onFileChange} />
-            </Button>
-            {data && (
-                <Typography variant="body2" sx={{ mt: 2 }}>
-                    File uploaded
-                </Typography>
-            )}
+        <Grid2 container>
+            <Box >
+
+                <Button variant="contained" component="label" fullWidth>
+                    Upload File
+                    <input type="file" hidden onChange={onFileChange} />
+                </Button>
+            </Box>
+            <Grid2 size={1}></Grid2>
+            <Grid2 size={9}>
+
+                {(filePreview || data) && (
+                    <a href={filePreview || data} target="_blank" rel="noopener noreferrer">
+                        <img src={filePreview || data} alt="File preview" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                    </a>
+                )}
+            </Grid2>
         </Grid2>
     );
 };

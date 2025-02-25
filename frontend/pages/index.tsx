@@ -1,20 +1,28 @@
 // filepath: /pages/form.tsx
 import { useState } from 'react';
-import { Container, TextField, Button, Typography, Grid2 } from '@mui/material';
+import { Button, Typography, Grid2 } from '@mui/material';
 import { JsonForms } from '@jsonforms/react';
 import { schema, UISchema } from './form'
 import {
-    materialRenderers,
     materialCells,
 } from '@jsonforms/material-renderers';
 import { renderers } from '../utils/Renderers';
+import { useMutation } from '@tanstack/react-query';
+import { createPatient } from '../utils/api';
 
 const Home = () => {
     const [data, setData] = useState({});
+    const mutation = useMutation({
+        mutationFn: createPatient, onSuccess: () => {
+            alert('Patient created successfully')
+            setData({})
+        }
+    });
+
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        // Handle form submission
+        mutation.mutate(data);
     };
 
     return (
@@ -23,6 +31,12 @@ const Home = () => {
                 <Typography variant="h4" component="h1" gutterBottom>
                     New Patient Form
                 </Typography>
+            </Grid2>
+            <Grid2 size={10} display={'flex'} justifyContent={'flex-end'} sx={{ mb: 5 }}>
+
+                <Button variant="contained" color="primary" onClick={handleSubmit}>
+                    Submit
+                </Button>
             </Grid2>
             <Grid2 size={10}>
                 <JsonForms

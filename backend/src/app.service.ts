@@ -1,20 +1,28 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreatePatientDto, Patient } from './dto/patient';
+import { Db } from 'mongodb';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class AppService {
-  private readonly patients: Patient[] = [];
+  constructor(@Inject('mongoClient') private db: Db) { }
 
-  addPatient(createPatientDto: CreatePatientDto): Patient {
-    const newPatient: Patient = {
-      id: (this.patients.length + 1).toString(),
+  async listPatients() {
+    const patients = await this.db.collection('patients').find().sort({ name: 1 }).toArray();
+    return patients;
+  }
+
+  async addPatient(createPatientDto: CreatePatientDto) {
+    const newPatient = {
+      id: uuidv4(),
       ...createPatientDto,
     };
-    this.patients.push(newPatient);
+    await this.db.collection('patients').insertOne(newPatient);
     return newPatient;
   }
 
-  getPatientById(id: string): Patient | undefined {
-    return this.patients.find((patient) => patient.id === id);
+  async getPatientById(id: string) {
+    const patient = await this.db.collection('patients').findOne({ id });
+    return patient;
   }
 }
