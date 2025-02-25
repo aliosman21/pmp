@@ -19,8 +19,8 @@ const Navbar = () => {
                 <Typography variant="h6" sx={{ flexGrow: 1 }}>
                     Patients Management System
                 </Typography>
-                <Button color="inherit" onClick={() => router.push('/')}>Home</Button>
-                <Button color="inherit" onClick={() => router.push('/patient')}>Patient Info</Button>
+                <Button color="inherit" onClick={() => router.push('/patients')}>Patient List</Button>
+                <Button color="inherit" onClick={() => router.push('/patients/add')}>New Patient</Button>
                 <Button color="inherit" onClick={handleLogout}>Logout</Button>
             </Toolbar>
         </AppBar>

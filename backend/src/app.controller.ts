@@ -1,8 +1,7 @@
-import { Controller, Get, Post, Body, Param, UseInterceptors, UploadedFile, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, UseInterceptors, UploadedFile, Res, Patch } from '@nestjs/common';
 import { Response } from 'express';
 import { Multer } from 'multer';
 import { AppService } from './app.service';
-import { CreatePatientDto, Patient } from './dto/patient';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname, join } from 'path';
@@ -13,10 +12,15 @@ export class AppController {
   constructor(private readonly appService: AppService) { }
 
   @Post()
-  async addPatient(@Body() createPatientDto: CreatePatientDto) {
+  async addPatient(@Body() createPatientDto) {
     await this.appService.addPatient(createPatientDto);
 
     return { message: 'Patient added successfully' }
+  }
+  @Patch(':id')
+  async editPatientById(@Param('id') id: string, @Body() updatePatientDto) {
+    const patient = await this.appService.editPatientById(id, updatePatientDto);
+    return { message: 'Patient updated' }
   }
 
   @Get('')

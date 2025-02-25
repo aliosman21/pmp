@@ -31,6 +31,15 @@ export const createPatient = async (patientData: object) => {
         throw error;
     }
 };
+export const updatePatient = async (id: string, patientData: object) => {
+    try {
+        const response = await axios.patch(`${API_BASE_URL}/patients/${id}`, patientData);
+        return response.data;
+    } catch (error) {
+        console.error('Error creating new patient:', error);
+        throw error;
+    }
+};
 
 export const uploadFile = async (formData: FormData) => {
     try {

@@ -1,5 +1,4 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CreatePatientDto, Patient } from './dto/patient';
 import { Db } from 'mongodb';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -12,13 +11,23 @@ export class AppService {
     return patients;
   }
 
-  async addPatient(createPatientDto: CreatePatientDto) {
+  async addPatient(createPatientDto) {
     const newPatient = {
       id: uuidv4(),
       ...createPatientDto,
     };
     await this.db.collection('patients').insertOne(newPatient);
     return newPatient;
+  }
+
+  async editPatientById(id: string, createPatientDto) {
+    const updatedPatient = {
+      id,
+      ...createPatientDto,
+    };
+    const { _id, ...data } = updatedPatient; // Exclude _id from the update data
+
+    await this.db.collection('patients').updateOne({ id }, { $set: data });
   }
 
   async getPatientById(id: string) {

@@ -6,9 +6,9 @@ import { schema, UISchema } from './form'
 import {
     materialCells,
 } from '@jsonforms/material-renderers';
-import { renderers } from '../utils/Renderers';
 import { useMutation } from '@tanstack/react-query';
-import { createPatient } from '../utils/api';
+import { createPatient } from '../../utils/api';
+import { renderers } from '../../utils/Renderers';
 
 const Home = () => {
     const [data, setData] = useState({});
