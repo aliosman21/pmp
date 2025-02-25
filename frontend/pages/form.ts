@@ -262,8 +262,109 @@ export const schema = {
             }
         },
 
+        // ----------------------------------------------------------- Allergy & Tobacco Use -------------------------------------- //
+        "smoking": {
+            "type": "string",
+            "enum": [
+                "Yes",
+                "No",
+            ]
+        },
+        "frequency": {
+            "type": "number",
+            "description": "Please enter your height"
+        },
 
+        "allergies": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                    },
+                }
+            }
+        },
 
+        // ----------------------------------------------------------- Diagnosis -------------------------------------- //
+        "physicalExamination": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "sign": {
+                        "type": "string",
+                    },
+                    "symptom": {
+                        "type": "string",
+                    },
+                    "diagnosis": {
+                        "type": "string",
+                    },
+                }
+            }
+        },
+        // ----------------------------------------------------------- Blood Pressure -------------------------------------- //
+        "bloodPressure": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "systolic": {
+                        "type": "number",
+                    },
+                    "diastolic": {
+                        "type": "number",
+                    },
+                    "pulse": {
+                        "type": "number",
+                    },
+                    "dateTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                }
+            }
+        },
+        // ----------------------------------------------------------- Blood Glucose -------------------------------------- //
+        "bloodGlucose": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "measuringType": {
+                        "type": "string",
+                        "enum": [
+                            "Random",
+                            "Fasting"
+                        ]
+                    },
+                    "dateTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                }
+            }
+        },
+        // ----------------------------------------------------------- Lab Test -------------------------------------- //
+        // ----------------------------------------------------------- Radiology -------------------------------------- //
+        "radiology": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "scanType": {
+                        "type": "string",
+                        "enum": [
+                            "X-Ray",
+                            "CISCA",
+                            "MRI"
+                        ]
+                    },
+                }
+            }
+        },
 
 
     }
@@ -470,27 +571,27 @@ export const UISchema = {
                                 {
                                     "type": "Control",
                                     "scope": "#/properties/familyAnemia",
-                                    "label": 'Anemia'
+                                    "label": "Anemia"
                                 },
                                 {
                                     "type": "Control",
                                     "scope": "#/properties/familyDiabetes",
-                                    "label": 'Diabetes'
+                                    "label": "Diabetes"
                                 },
                                 {
                                     "type": "Control",
                                     "scope": "#/properties/familyBloodClot",
-                                    "label": 'Blood Clot'
+                                    "label": "Blood Clot"
                                 },
                                 {
                                     "type": "Control",
                                     "scope": "#/properties/familyHeartDisease",
-                                    "label": 'Heart Disease'
+                                    "label": "Heart Disease"
                                 },
                                 {
                                     "type": "Control",
                                     "scope": "#/properties/familyStroke",
-                                    "label": 'Stroke'
+                                    "label": "Stroke"
                                 },
                             ]
                         },
@@ -500,27 +601,27 @@ export const UISchema = {
                                 {
                                     "type": "Control",
                                     "scope": "#/properties/familyHypertension",
-                                    "label": 'Hypertension'
+                                    "label": "Hypertension"
                                 },
                                 {
                                     "type": "Control",
                                     "scope": "#/properties/familyAnesthesiaReaction",
-                                    "label": 'Anesthesia Reaction'
+                                    "label": "Anesthesia Reaction"
                                 },
                                 {
                                     "type": "Control",
                                     "scope": "#/properties/familyBleedingProblems",
-                                    "label": 'Bleeding Problems'
+                                    "label": "Bleeding Problems"
                                 },
                                 {
                                     "type": "Control",
                                     "scope": "#/properties/familyHepatitis",
-                                    "label": 'Hepatitis'
+                                    "label": "Hepatitis"
                                 },
                                 {
                                     "type": "Control",
                                     "scope": "#/properties/familyOther",
-                                    "label": 'Other'
+                                    "label": "Other"
                                 },
                             ]
                         },
@@ -666,6 +767,153 @@ export const UISchema = {
                     ]
                 },
             ],
+        },
+        {
+            "type": "Category",
+            "label": "Allergy & Tobacco Use",
+            "elements": [
+                {
+                    "type": "HorizontalLayout",
+                    "elements": [
+                        {
+                            "type": "Control",
+                            "scope": "#/properties/smoking",
+                            "options": {
+                                "format": "radio"
+                            }
+                        },
+                        {
+                            "type": "Control",
+                            "scope": "#/properties/frequency"
+                        },
+                    ]
+                },
+                {
+                    "type": "HorizontalLayout",
+                    "elements": [
+                        {
+                            "type": "Control",
+                            "scope": "#/properties/allergies"
+                        }
+                    ]
+                },
+            ],
+        },
+        {
+            "type": "Category",
+            "label": "Diagnosis",
+            "elements": [
+                {
+                    "type": "HorizontalLayout",
+                    "elements": [
+                        {
+                            "type": "Control",
+                            "scope": "#/properties/physicalExamination"
+                        }
+                    ]
+                },
+
+            ],
+        },
+        {
+            "type": "Category",
+            "label": "Blood Pressure",
+            "elements": [
+                {
+                    "type": "Control",
+                    "scope": "#/properties/bloodPressure",
+                    "options": {
+                        "detail": {
+                            "type": "VerticalLayout",
+                            "elements": [
+                                {
+                                    "type": "HorizontalLayout",
+                                    "elements": [
+                                        {
+                                            "type": "Control",
+                                            "scope": "#/properties/systolic"
+                                        },
+                                        {
+                                            "type": "Control",
+                                            "scope": "#/properties/diastolic"
+                                        },
+                                        {
+                                            "type": "Control",
+                                            "scope": "#/properties/pulse"
+                                        },
+                                        {
+                                            "type": "Control",
+                                            "scope": "#/properties/dateTime"
+                                        },
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "type": "Category",
+            "label": "Blood Glucose",
+            "elements": [
+                {
+                    "type": "Control",
+                    "scope": "#/properties/bloodGlucose",
+                    "options": {
+                        "detail": {
+                            "type": "VerticalLayout",
+                            "elements": [
+                                {
+                                    "type": "HorizontalLayout",
+                                    "elements": [
+                                        {
+                                            "type": "Control",
+                                            "scope": "#/properties/measuringType"
+                                        },
+                                        {
+                                            "type": "Control",
+                                            "scope": "#/properties/dateTime"
+                                        },
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "type": "Category",
+            "label": "Lab Test",
+            "elements": [
+            ]
+        },
+        {
+            "type": "Category",
+            "label": "Radiology",
+            "elements": [
+                {
+                    "type": "Control",
+                    "scope": "#/properties/radiology",
+                    "options": {
+                        "detail": {
+                            "type": "VerticalLayout",
+                            "elements": [
+                                {
+                                    "type": "HorizontalLayout",
+                                    "elements": [
+                                        {
+                                            "type": "Control",
+                                            "scope": "#/properties/scanType"
+                                        },
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
         },
     ],
     "options": {
