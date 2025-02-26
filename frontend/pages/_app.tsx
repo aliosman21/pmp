@@ -1,5 +1,5 @@
 // filepath: /pages/_app.tsx
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { AppProps } from 'next/app';
 import Navbar from '../components/Navbar';
@@ -27,7 +27,9 @@ const theme = createTheme({
     MuiStepper: {
       styleOverrides: {
         root: {
-          paddingBottom: 25
+          overflow: "scroll",
+          scrollbarWidth: "none",
+          paddingBottom: 48
         }
       }
     }
@@ -37,12 +39,20 @@ const theme = createTheme({
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
+  const [authChecked, setAuthChecked] = useState(false);
+
   useEffect(() => {
     const auth = localStorage.getItem('auth');
     if (!auth && router.pathname !== '/login') {
+      localStorage.setItem('redirectAfterLogin', router.asPath);
       router.push('/login');
+    } else {
+      setAuthChecked(true);
     }
   }, [router]);
+  if (!authChecked && router.pathname !== '/login') {
+    return null; // or a loading spinner
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

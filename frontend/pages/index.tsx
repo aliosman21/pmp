@@ -2,7 +2,7 @@ import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useQuery } from '@tanstack/react-query';
 
-import { listPatients } from '../../utils/api';
+import { listPatients } from '../utils/api';
 import { Grid2 } from '@mui/material';
 import { useRouter } from 'next/router';
 

@@ -14,7 +14,9 @@ const Login = () => {
         // Simple authentication logic
         if (username === 'admin' && password === 'pass') {
             localStorage.setItem('auth', 'true');
-            router.push('/');
+            const redirectUrl = localStorage.getItem('redirectAfterLogin') || '/';
+            localStorage.removeItem('redirectAfterLogin');
+            router.push(redirectUrl);
         } else {
             setError('Invalid username or password');
         }

@@ -7,6 +7,7 @@ import { renderers } from '../../utils/Renderers';
 import { materialCells } from '@jsonforms/material-renderers';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { fetchPatientByID, updatePatient } from '../../utils/api';
+import { QRCodeCanvas } from 'qrcode.react';
 
 
 const Patient = () => {
@@ -54,6 +55,7 @@ const Patient = () => {
                 <Typography variant="h4" component="h1" gutterBottom>
                     Patient profile
                 </Typography>
+                <QRCodeCanvas value={`http://192.168.1.252:3001/patients/${id}`} id="qrcode" />
             </Grid2>
             <Grid2 size={10} display={'flex'} justifyContent={'flex-end'} sx={{ mb: 5 }}>
 
