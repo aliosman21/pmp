@@ -826,90 +826,6 @@ export const UISchema = {
         },
         {
             "type": "Category",
-            "label": "Diagnosis",
-            "elements": [
-                {
-                    "type": "HorizontalLayout",
-                    "elements": [
-                        {
-                            "type": "Control",
-                            "scope": "#/properties/physicalExamination"
-                        }
-                    ]
-                },
-
-            ],
-        },
-        {
-            "type": "Category",
-            "label": "Blood Pressure",
-            "elements": [
-                {
-                    "type": "Control",
-                    "scope": "#/properties/bloodPressure",
-                    "options": {
-                        "detail": {
-                            "type": "VerticalLayout",
-                            "elements": [
-                                {
-                                    "type": "HorizontalLayout",
-                                    "elements": [
-                                        {
-                                            "type": "Control",
-                                            "scope": "#/properties/systolic"
-                                        },
-                                        {
-                                            "type": "Control",
-                                            "scope": "#/properties/diastolic"
-                                        },
-                                        {
-                                            "type": "Control",
-                                            "scope": "#/properties/pulse"
-                                        },
-                                        {
-                                            "type": "Control",
-                                            "scope": "#/properties/dateTime"
-                                        },
-                                    ]
-                                }
-                            ]
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "type": "Category",
-            "label": "Blood Glucose",
-            "elements": [
-                {
-                    "type": "Control",
-                    "scope": "#/properties/bloodGlucose",
-                    "options": {
-                        "detail": {
-                            "type": "VerticalLayout",
-                            "elements": [
-                                {
-                                    "type": "HorizontalLayout",
-                                    "elements": [
-                                        {
-                                            "type": "Control",
-                                            "scope": "#/properties/measuringType"
-                                        },
-                                        {
-                                            "type": "Control",
-                                            "scope": "#/properties/dateTime"
-                                        },
-                                    ]
-                                }
-                            ]
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "type": "Category",
             "label": "Lab Test",
             "elements": [
                 {
@@ -986,3 +902,89 @@ export const UISchema = {
         "variant": "stepper"
     }
 }
+
+
+// {
+//     "type": "Category",
+//     "label": "Diagnosis",
+//     "elements": [
+//         {
+//             "type": "HorizontalLayout",
+//             "elements": [
+//                 {
+//                     "type": "Control",
+//                     "scope": "#/properties/physicalExamination"
+//                 }
+//             ]
+//         },
+
+//     ],
+// },
+// {
+//     "type": "Category",
+//     "label": "Blood Pressure",
+//     "elements": [
+//         {
+//             "type": "Control",
+//             "scope": "#/properties/bloodPressure",
+//             "options": {
+//                 "detail": {
+//                     "type": "VerticalLayout",
+//                     "elements": [
+//                         {
+//                             "type": "HorizontalLayout",
+//                             "elements": [
+//                                 {
+//                                     "type": "Control",
+//                                     "scope": "#/properties/systolic"
+//                                 },
+//                                 {
+//                                     "type": "Control",
+//                                     "scope": "#/properties/diastolic"
+//                                 },
+//                                 {
+//                                     "type": "Control",
+//                                     "scope": "#/properties/pulse"
+//                                 },
+//                                 {
+//                                     "type": "Control",
+//                                     "scope": "#/properties/dateTime"
+//                                 },
+//                             ]
+//                         }
+//                     ]
+//                 }
+//             }
+//         }
+//     ]
+// },
+// {
+//     "type": "Category",
+//     "label": "Blood Glucose",
+//     "elements": [
+//         {
+//             "type": "Control",
+//             "scope": "#/properties/bloodGlucose",
+//             "options": {
+//                 "detail": {
+//                     "type": "VerticalLayout",
+//                     "elements": [
+//                         {
+//                             "type": "HorizontalLayout",
+//                             "elements": [
+//                                 {
+//                                     "type": "Control",
+//                                     "scope": "#/properties/measuringType"
+//                                 },
+//                                 {
+//                                     "type": "Control",
+//                                     "scope": "#/properties/dateTime"
+//                                 },
+//                             ]
+//                         }
+//                     ]
+//                 }
+//             }
+//         }
+//     ]
+// },

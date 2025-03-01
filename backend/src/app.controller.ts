@@ -48,7 +48,7 @@ export class AppController {
     }),
   }))
   async uploadFile(@UploadedFile() file: Multer.File) {
-    const fileUrl = `http://localhost:3000/patients/file/${file.filename}`;
+    const fileUrl = `${process.env.FORWARDED_URL}/patients/file/${file.filename}`;
 
     return { message: 'File uploaded successfully', filePath: fileUrl };
   }
