@@ -55,7 +55,7 @@ const Patient = () => {
                 <Typography variant="h4" component="h1" gutterBottom>
                     Patient profile
                 </Typography>
-                <QRCodeCanvas value={`http://192.168.1.252:3001/patients/${id}`} id="qrcode" />
+                <QRCodeCanvas value={`${process.env.NEXT_PUBLIC_API_URL}/patients/${id}`} id="qrcode" />
             </Grid2>
             <Grid2 size={10} display={'flex'} justifyContent={'flex-end'} sx={{ mb: 5 }}>
 
